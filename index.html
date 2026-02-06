@@ -224,7 +224,7 @@
       z-index: 1000;
     }
     .app-logo img {
-      width: 50px; /* Adjust logo size */
+      width: 60px; /* Adjust logo size */
       height: auto;
     }
 body::before {
@@ -695,6 +695,33 @@ footer .social-links a:active img {
 }
 
 
+.lang-switch {
+  position: fixed;       /* stays in one place */
+  top: 20px;             /* distance from top */
+  right: 20px;           /* distance from right edge */
+  display: flex;
+  gap: 8px;              /* space between buttons */
+  z-index: 1000;         /* above everything */
+}
+
+.lang-switch button {
+  padding: 6px 12px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  background-color: rgba(0, 51, 102, 0.75); /* semi-transparent, matches your tech boxes */
+  color: #fff;
+  transition: 0.3s;
+  box-shadow: 0 0 6px rgba(0, 204, 255, 0.4); /* subtle glow */
+}
+
+.lang-switch button:hover {
+  background-color: rgba(0, 85, 170, 0.85);
+  box-shadow: 0 0 12px rgba(0, 204, 255, 0.7); /* stronger glow on hover */
+}
+
 
 
 
@@ -702,6 +729,13 @@ footer .social-links a:active img {
   </style>
 </head>
 <body>
+
+<div class="lang-switch">
+  <button data-lang="en">EN</button>
+  <button data-lang="pt">PT</button>
+  <button data-lang="es">ES</button>
+</div>
+
 
   <!-- Logo in Top Left -->
   <div class="app-logo">
