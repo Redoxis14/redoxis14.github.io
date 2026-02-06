@@ -732,7 +732,6 @@ footer .social-links a:active img {
 <a href="https://play.google.com/store/apps/details?id=io.unitynodes.unityapp" 
    target="_blank" 
    class="store-button"
-   onclick="gtag('event', 'click', { 'event_category': 'Click', 'event_label': 'Google click' });">
   <img src="googlebutton.png" alt="Google Play Store">
 </a>
 
@@ -932,6 +931,48 @@ footer .social-links a:active img {
   window.addEventListener('scroll', revealResources);
   window.addEventListener('load', revealResources); // in case it's already visible on load
 </script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  function getCategory(el) {
+    const href = el.getAttribute("href") || "";
+
+    if (href.includes("play.google.com")) return "App Store";
+    if (href.includes("apple.com")) return "App Store";
+    if (href.includes("t.me")) return "Social";
+    if (href.includes("discord")) return "Social";
+    if (href.includes("x.com") || href.includes("twitter")) return "Social";
+
+    if (el.classList.contains("telegram-cta")) return "CTA";
+    if (el.classList.contains("store-button")) return "CTA";
+
+    return "Link";
+  }
+
+  function getLabel(el) {
+    return (
+      el.innerText?.trim() ||
+      el.getAttribute("alt") ||
+      el.getAttribute("href") ||
+      "unknown"
+    );
+  }
+
+  document.addEventListener("click", (e) => {
+    const el = e.target.closest("a, button");
+    if (!el) return;
+
+    gtag("event", "click", {
+      event_category: getCategory(el),
+      event_label: getLabel(el),
+      transport_type: "beacon"
+    });
+  });
+
+});
+</script>
+
 
 </body>
 </html>
